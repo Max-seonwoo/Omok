@@ -9419,3 +9419,674 @@ java.lang.IllegalArgumentException: Path must include project and resource name:
 	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:653)
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:590)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1461)
+
+!ENTRY org.eclipse.wb.core 4 4 2022-11-19 16:29:35.493
+!MESSAGE Designer [1.11.0.202210231159.202211191325]: 205 (Unable to parse source.). java.lang.System.out.println(f1.getContentPane()); line: 1 The import java.awt.BorderLayout is never used
+line: 2 The import java.awt.Canvas is never used
+line: 3 The import java.awt.Color is never used
+line: 4 The import java.awt.Dimension is never used
+line: 5 The import java.awt.Graphics is never used
+line: 6 The import java.awt.Graphics2D is never used
+line: 7 The import java.awt.Image is never used
+line: 8 The import java.awt.Label is never used
+line: 9 The import java.awt.Panel is never used
+line: 10 The import java.awt.Point is never used
+line: 11 The import java.awt.TextArea is never used
+line: 12 The import java.awt.TextField is never used
+line: 13 The import java.awt.Toolkit is never used
+line: 16 The import java.awt.event.MouseAdapter is never used
+line: 17 The import java.awt.event.MouseEvent is never used
+line: 18 The import java.awt.event.WindowAdapter is never used
+line: 19 The import java.awt.event.WindowEvent is never used
+line: 20 The import java.awt.image.BufferedImage is never used
+line: 21 The import java.io.BufferedReader is never used
+line: 22 The import java.io.IOException is never used
+line: 23 The import java.io.InputStreamReader is never used
+line: 24 The import java.io.PrintWriter is never used
+line: 25 The import java.net.Socket is never used
+line: 26 The import java.util.StringTokenizer is never used
+line: 27 The import javax.imageio.ImageIO is never used
+line: 28 The import javax.swing.ImageIcon is never used
+line: 30 The import javax.swing.JLabel is never used
+line: 31 The import java.awt.Font is never used
+line: 32 The import javax.swing.JButton is never used
+line: 33 The serializable class OmokClient does not declare a static final serialVersionUID field of type long
+line: 65 The method endGame(String) from the type OmokClient is never used locally
+line: 66 The method playersInfo() from the type OmokClient is never used locally
+line: 67 The method nameList(String) from the type OmokClient is never used locally
+line: 68 The method roomList(String) from the type OmokClient is never used locally
+line: 71 The value of the local variable arg0 is not used
+line: 72 The value of the local variable toolkit is not used
+line: 73 The value of the local variable size is not used
+line: 74 The value of the local variable title is not used
+!STACK 0
+org.eclipse.wb.internal.core.utils.exception.DesignerException: 205 (Unable to parse source.). java.lang.System.out.println(f1.getContentPane()); line: 1 The import java.awt.BorderLayout is never used
+line: 2 The import java.awt.Canvas is never used
+line: 3 The import java.awt.Color is never used
+line: 4 The import java.awt.Dimension is never used
+line: 5 The import java.awt.Graphics is never used
+line: 6 The import java.awt.Graphics2D is never used
+line: 7 The import java.awt.Image is never used
+line: 8 The import java.awt.Label is never used
+line: 9 The import java.awt.Panel is never used
+line: 10 The import java.awt.Point is never used
+line: 11 The import java.awt.TextArea is never used
+line: 12 The import java.awt.TextField is never used
+line: 13 The import java.awt.Toolkit is never used
+line: 16 The import java.awt.event.MouseAdapter is never used
+line: 17 The import java.awt.event.MouseEvent is never used
+line: 18 The import java.awt.event.WindowAdapter is never used
+line: 19 The import java.awt.event.WindowEvent is never used
+line: 20 The import java.awt.image.BufferedImage is never used
+line: 21 The import java.io.BufferedReader is never used
+line: 22 The import java.io.IOException is never used
+line: 23 The import java.io.InputStreamReader is never used
+line: 24 The import java.io.PrintWriter is never used
+line: 25 The import java.net.Socket is never used
+line: 26 The import java.util.StringTokenizer is never used
+line: 27 The import javax.imageio.ImageIO is never used
+line: 28 The import javax.swing.ImageIcon is never used
+line: 30 The import javax.swing.JLabel is never used
+line: 31 The import java.awt.Font is never used
+line: 32 The import javax.swing.JButton is never used
+line: 33 The serializable class OmokClient does not declare a static final serialVersionUID field of type long
+line: 65 The method endGame(String) from the type OmokClient is never used locally
+line: 66 The method playersInfo() from the type OmokClient is never used locally
+line: 67 The method nameList(String) from the type OmokClient is never used locally
+line: 68 The method roomList(String) from the type OmokClient is never used locally
+line: 71 The value of the local variable arg0 is not used
+line: 72 The value of the local variable toolkit is not used
+line: 73 The value of the local variable size is not used
+line: 74 The value of the local variable title is not used
+	at org.eclipse.wb.internal.core.utils.ast.AstParser.parseStatement(AstParser.java:162)
+	at org.eclipse.wb.internal.core.utils.ast.AstParser.parseExpression(AstParser.java:111)
+	at org.eclipse.wb.internal.core.utils.ast.AstEditor.replaceExpressionString(AstEditor.java:1085)
+	at org.eclipse.wb.internal.core.utils.ast.AstEditor.replaceExpression(AstEditor.java:1035)
+	at org.eclipse.wb.internal.core.utils.ast.AstEditor.replaceInvocationExpression(AstEditor.java:3407)
+	at org.eclipse.wb.internal.swing.parser.SwingRewriteProcessor$3.endVisitEx(SwingRewriteProcessor.java:114)
+	at org.eclipse.wb.internal.core.utils.ast.AstVisitorEx.endVisit(AstVisitorEx.java:75)
+	at org.eclipse.jdt.core.dom.MethodInvocation.accept0(MethodInvocation.java:230)
+	at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:3012)
+	at org.eclipse.jdt.core.dom.ASTNode.acceptChild(ASTNode.java:3060)
+	at org.eclipse.jdt.core.dom.ExpressionStatement.accept0(ExpressionStatement.java:136)
+	at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:3012)
+	at org.eclipse.jdt.core.dom.ASTNode.acceptChildren(ASTNode.java:3083)
+	at org.eclipse.jdt.core.dom.Block.accept0(Block.java:128)
+	at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:3012)
+	at org.eclipse.jdt.core.dom.ASTNode.acceptChild(ASTNode.java:3060)
+	at org.eclipse.jdt.core.dom.TryStatement.accept0(TryStatement.java:274)
+	at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:3012)
+	at org.eclipse.jdt.core.dom.ASTNode.acceptChildren(ASTNode.java:3083)
+	at org.eclipse.jdt.core.dom.Block.accept0(Block.java:128)
+	at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:3012)
+	at org.eclipse.jdt.core.dom.ASTNode.acceptChild(ASTNode.java:3060)
+	at org.eclipse.jdt.core.dom.MethodDeclaration.accept0(MethodDeclaration.java:698)
+	at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:3012)
+	at org.eclipse.jdt.core.dom.ASTNode.acceptChildren(ASTNode.java:3083)
+	at org.eclipse.jdt.core.dom.AnonymousClassDeclaration.accept0(AnonymousClassDeclaration.java:135)
+	at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:3012)
+	at org.eclipse.jdt.core.dom.ASTNode.acceptChild(ASTNode.java:3060)
+	at org.eclipse.jdt.core.dom.ClassInstanceCreation.accept0(ClassInstanceCreation.java:305)
+	at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:3012)
+	at org.eclipse.jdt.core.dom.ASTNode.acceptChildren(ASTNode.java:3083)
+	at org.eclipse.jdt.core.dom.MethodInvocation.accept0(MethodInvocation.java:228)
+	at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:3012)
+	at org.eclipse.jdt.core.dom.ASTNode.acceptChild(ASTNode.java:3060)
+	at org.eclipse.jdt.core.dom.ExpressionStatement.accept0(ExpressionStatement.java:136)
+	at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:3012)
+	at org.eclipse.jdt.core.dom.ASTNode.acceptChildren(ASTNode.java:3083)
+	at org.eclipse.jdt.core.dom.Block.accept0(Block.java:128)
+	at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:3012)
+	at org.eclipse.jdt.core.dom.ASTNode.acceptChild(ASTNode.java:3060)
+	at org.eclipse.jdt.core.dom.MethodDeclaration.accept0(MethodDeclaration.java:698)
+	at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:3012)
+	at org.eclipse.jdt.core.dom.ASTNode.acceptChildren(ASTNode.java:3083)
+	at org.eclipse.jdt.core.dom.TypeDeclaration.accept0(TypeDeclaration.java:526)
+	at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:3012)
+	at org.eclipse.wb.internal.swing.parser.SwingRewriteProcessor.rewrite_RootPaneContainer(SwingRewriteProcessor.java:103)
+	at org.eclipse.wb.internal.swing.parser.SwingRewriteProcessor.rewrite(SwingRewriteProcessor.java:58)
+	at org.eclipse.wb.internal.swing.parser.ParseFactory.getRootContext(ParseFactory.java:104)
+	at org.eclipse.wb.internal.core.parser.JavaInfoParser.prepareParseContext(JavaInfoParser.java:1191)
+	at org.eclipse.wb.internal.core.parser.JavaInfoParser.parse(JavaInfoParser.java:244)
+	at org.eclipse.wb.internal.core.parser.JavaInfoParser$1.runObject(JavaInfoParser.java:153)
+	at org.eclipse.wb.internal.core.parser.JavaInfoParser$1.runObject(JavaInfoParser.java:1)
+	at org.eclipse.wb.internal.core.utils.execution.ExecutionUtils.runDesignTime(ExecutionUtils.java:160)
+	at org.eclipse.wb.internal.core.parser.JavaInfoParser.parse(JavaInfoParser.java:150)
+	at org.eclipse.wb.internal.core.editor.DesignPage.internal_refreshGEF(DesignPage.java:553)
+	at org.eclipse.wb.internal.core.editor.DesignPage$8$1.run(DesignPage.java:468)
+	at org.eclipse.swt.widgets.Synchronizer.syncExec(Synchronizer.java:236)
+	at org.eclipse.ui.internal.UISynchronizer.syncExec(UISynchronizer.java:133)
+	at org.eclipse.swt.widgets.Display.syncExec(Display.java:4742)
+	at org.eclipse.wb.internal.core.editor.DesignPage$8.run(DesignPage.java:464)
+	at org.eclipse.jface.operation.ModalContext.runInCurrentThread(ModalContext.java:436)
+	at org.eclipse.jface.operation.ModalContext.run(ModalContext.java:352)
+	at org.eclipse.jface.dialogs.ProgressMonitorDialog.run(ProgressMonitorDialog.java:468)
+	at org.eclipse.wb.internal.core.editor.DesignPage.internal_refreshGEF_withProgress(DesignPage.java:484)
+	at org.eclipse.wb.internal.core.editor.DesignPage.internal_refreshGEF(DesignPage.java:432)
+	at org.eclipse.wb.internal.core.editor.UndoManager.refreshDesignerEditor(UndoManager.java:389)
+	at org.eclipse.wb.internal.core.editor.UndoManager.activate(UndoManager.java:90)
+	at org.eclipse.wb.internal.core.editor.DesignPage.handleActiveState_True(DesignPage.java:275)
+	at org.eclipse.wb.internal.core.editor.DesignPage.handleActiveState(DesignPage.java:252)
+	at org.eclipse.wb.internal.core.editor.multi.DefaultMultiMode.showPage(DefaultMultiMode.java:127)
+	at org.eclipse.wb.internal.core.editor.multi.DefaultMultiMode$1.widgetSelected(DefaultMultiMode.java:63)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:252)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:89)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4209)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1037)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1061)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1046)
+	at org.eclipse.swt.widgets.Widget.notifyListeners(Widget.java:760)
+	at org.eclipse.swt.custom.CTabFolder.setSelection(CTabFolder.java:3241)
+	at org.eclipse.swt.custom.CTabFolder.onMouse(CTabFolder.java:1879)
+	at org.eclipse.swt.custom.CTabFolder.lambda$0(CTabFolder.java:330)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:89)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4209)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1037)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4026)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3626)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1157)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1046)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:644)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:551)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:156)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:152)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:401)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:653)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:590)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1461)
+Caused by: org.eclipse.wb.internal.core.utils.exception.DesignerException: 205 (Unable to parse source.). import java.awt.BorderLayout;
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Label;
+import java.awt.Panel;
+import java.awt.Point;
+import java.awt.TextArea;
+import java.awt.TextField;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.util.StringTokenizer;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JButton;
+class OmokClient extends JFrame implements Runnable, ActionListener {
+static java.lang.String myblack=(java.lang.String) null;
+static java.lang.String mywhite=(java.lang.String) null;
+static java.awt.TextArea msgView=(java.awt.TextArea) null;
+java.awt.TextField sendBox=(java.awt.TextField) null;
+java.awt.TextField roomName=(java.awt.TextField) null;
+java.awt.TextField roomPassword=(java.awt.TextField) null;
+static java.awt.TextField nameBox=(java.awt.TextField) null;
+java.awt.Label pInfo=(java.awt.Label) null;
+java.awt.List pList=(java.awt.List) null;
+java.awt.List rList=(java.awt.List) null;
+javax.swing.JLabel makeRoom=(javax.swing.JLabel) null;
+javax.swing.JLabel enterButton=(javax.swing.JLabel) null;
+javax.swing.JLabel exitButton=(javax.swing.JLabel) null;
+java.awt.Label infoView=(java.awt.Label) null;
+OmokBoard board=(OmokBoard) null;
+java.io.BufferedReader reader=(java.io.BufferedReader) null;
+java.io.PrintWriter writer=(java.io.PrintWriter) null;
+java.net.Socket socket=(java.net.Socket) null;
+int roomNumber=0;
+java.lang.String userName=(java.lang.String) null;
+java.awt.Panel p1=(java.awt.Panel) null;
+java.awt.Panel p2=(java.awt.Panel) null;
+java.awt.Panel p3=(java.awt.Panel) null;
+javax.swing.JFrame f1=(javax.swing.JFrame) null;
+javax.swing.JLabel ready=(javax.swing.JLabel) null;
+javax.swing.JLabel quit=(javax.swing.JLabel) null;
+javax.swing.JLabel readyback=(javax.swing.JLabel) null;
+javax.swing.JLabel battleground=(javax.swing.JLabel) null;
+public void actionPerformed(ActionEvent ae){}
+void goToWaitRoom(){}
+public void run(){}
+private void endGame(String msg){}
+private void playersInfo(){}
+private void nameList(String msg){}
+private void roomList(String msg) {}
+public void connect(){}
+OmokClient(Object __wbp_param) {
+super();java.awt.event.MouseEvent arg0 = (java.awt.event.MouseEvent) null;
+java.awt.Toolkit toolkit = (java.awt.Toolkit) null;
+java.awt.Dimension size = (java.awt.Dimension) null;
+java.lang.String title = (java.lang.String) null;
+java.lang.System.out.println(f1.getContentPane());}
+} line: 1 The import java.awt.BorderLayout is never used
+line: 2 The import java.awt.Canvas is never used
+line: 3 The import java.awt.Color is never used
+line: 4 The import java.awt.Dimension is never used
+line: 5 The import java.awt.Graphics is never used
+line: 6 The import java.awt.Graphics2D is never used
+line: 7 The import java.awt.Image is never used
+line: 8 The import java.awt.Label is never used
+line: 9 The import java.awt.Panel is never used
+line: 10 The import java.awt.Point is never used
+line: 11 The import java.awt.TextArea is never used
+line: 12 The import java.awt.TextField is never used
+line: 13 The import java.awt.Toolkit is never used
+line: 16 The import java.awt.event.MouseAdapter is never used
+line: 17 The import java.awt.event.MouseEvent is never used
+line: 18 The import java.awt.event.WindowAdapter is never used
+line: 19 The import java.awt.event.WindowEvent is never used
+line: 20 The import java.awt.image.BufferedImage is never used
+line: 21 The import java.io.BufferedReader is never used
+line: 22 The import java.io.IOException is never used
+line: 23 The import java.io.InputStreamReader is never used
+line: 24 The import java.io.PrintWriter is never used
+line: 25 The import java.net.Socket is never used
+line: 26 The import java.util.StringTokenizer is never used
+line: 27 The import javax.imageio.ImageIO is never used
+line: 28 The import javax.swing.ImageIcon is never used
+line: 30 The import javax.swing.JLabel is never used
+line: 31 The import java.awt.Font is never used
+line: 32 The import javax.swing.JButton is never used
+line: 33 The serializable class OmokClient does not declare a static final serialVersionUID field of type long
+line: 65 The method endGame(String) from the type OmokClient is never used locally
+line: 66 The method playersInfo() from the type OmokClient is never used locally
+line: 67 The method nameList(String) from the type OmokClient is never used locally
+line: 68 The method roomList(String) from the type OmokClient is never used locally
+line: 71 The value of the local variable arg0 is not used
+line: 72 The value of the local variable toolkit is not used
+line: 73 The value of the local variable size is not used
+line: 74 The value of the local variable title is not used
+	at org.eclipse.wb.internal.core.utils.ast.AstParser.findNode(AstParser.java:773)
+	at org.eclipse.wb.internal.core.utils.ast.AstParser.parseStatement(AstParser.java:159)
+	... 106 more
+Caused by: java.lang.NoSuchMethodError: 'java.lang.String[] org.eclipse.jdt.core.dom.IMethodBinding.getParameterNames()'
+	at org.eclipse.wb.internal.core.utils.ast.binding.DesignerMethodBinding.<init>(DesignerMethodBinding.java:56)
+	at org.eclipse.wb.internal.core.utils.ast.binding.BindingContext.get(BindingContext.java:87)
+	at org.eclipse.wb.internal.core.utils.ast.binding.DesignerTypeBinding.<init>(DesignerTypeBinding.java:160)
+	at org.eclipse.wb.internal.core.utils.ast.binding.BindingContext.get(BindingContext.java:70)
+	at org.eclipse.wb.internal.core.utils.ast.binding.DesignerTypeBinding.<init>(DesignerTypeBinding.java:146)
+	at org.eclipse.wb.internal.core.utils.ast.binding.BindingContext.get(BindingContext.java:70)
+	at org.eclipse.wb.internal.core.utils.ast.AstParser$3.postVisit(AstParser.java:946)
+	at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:3015)
+	at org.eclipse.jdt.core.dom.ASTNode.acceptChild(ASTNode.java:3060)
+	at org.eclipse.jdt.core.dom.QualifiedName.accept0(QualifiedName.java:163)
+	at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:3012)
+	at org.eclipse.jdt.core.dom.ASTNode.acceptChild(ASTNode.java:3060)
+	at org.eclipse.jdt.core.dom.QualifiedName.accept0(QualifiedName.java:162)
+	at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:3012)
+	at org.eclipse.jdt.core.dom.ASTNode.acceptChild(ASTNode.java:3060)
+	at org.eclipse.jdt.core.dom.MethodInvocation.accept0(MethodInvocation.java:223)
+	at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:3012)
+	at org.eclipse.jdt.core.dom.ASTNode.acceptChild(ASTNode.java:3060)
+	at org.eclipse.jdt.core.dom.ExpressionStatement.accept0(ExpressionStatement.java:136)
+	at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:3012)
+	at org.eclipse.wb.internal.core.utils.ast.AstParser.copyBindings(AstParser.java:925)
+	at org.eclipse.wb.internal.core.utils.ast.AstParser.findNode0(AstParser.java:827)
+	at org.eclipse.wb.internal.core.utils.ast.AstParser.findNode(AstParser.java:770)
+	... 107 more
+
+!ENTRY org.eclipse.wb.core 4 4 2022-11-19 16:30:05.243
+!MESSAGE Designer [1.11.0.202210231159.202211191325]: 205 (Unable to parse source.). java.lang.System.out.println(f1.getContentPane()); line: 1 The import java.awt.BorderLayout is never used
+line: 2 The import java.awt.Canvas is never used
+line: 3 The import java.awt.Color is never used
+line: 4 The import java.awt.Dimension is never used
+line: 5 The import java.awt.Graphics is never used
+line: 6 The import java.awt.Graphics2D is never used
+line: 7 The import java.awt.Image is never used
+line: 8 The import java.awt.Label is never used
+line: 9 The import java.awt.Panel is never used
+line: 10 The import java.awt.Point is never used
+line: 11 The import java.awt.TextArea is never used
+line: 12 The import java.awt.TextField is never used
+line: 13 The import java.awt.Toolkit is never used
+line: 16 The import java.awt.event.MouseAdapter is never used
+line: 17 The import java.awt.event.MouseEvent is never used
+line: 18 The import java.awt.event.WindowAdapter is never used
+line: 19 The import java.awt.event.WindowEvent is never used
+line: 20 The import java.awt.image.BufferedImage is never used
+line: 21 The import java.io.BufferedReader is never used
+line: 22 The import java.io.IOException is never used
+line: 23 The import java.io.InputStreamReader is never used
+line: 24 The import java.io.PrintWriter is never used
+line: 25 The import java.net.Socket is never used
+line: 26 The import java.util.StringTokenizer is never used
+line: 27 The import javax.imageio.ImageIO is never used
+line: 28 The import javax.swing.ImageIcon is never used
+line: 30 The import javax.swing.JLabel is never used
+line: 31 The import java.awt.Font is never used
+line: 32 The import javax.swing.JButton is never used
+line: 33 The serializable class OmokClient does not declare a static final serialVersionUID field of type long
+line: 65 The method endGame(String) from the type OmokClient is never used locally
+line: 66 The method playersInfo() from the type OmokClient is never used locally
+line: 67 The method nameList(String) from the type OmokClient is never used locally
+line: 68 The method roomList(String) from the type OmokClient is never used locally
+line: 71 The value of the local variable arg0 is not used
+line: 72 The value of the local variable toolkit is not used
+line: 73 The value of the local variable size is not used
+line: 74 The value of the local variable title is not used
+!STACK 0
+org.eclipse.wb.internal.core.utils.exception.DesignerException: 205 (Unable to parse source.). java.lang.System.out.println(f1.getContentPane()); line: 1 The import java.awt.BorderLayout is never used
+line: 2 The import java.awt.Canvas is never used
+line: 3 The import java.awt.Color is never used
+line: 4 The import java.awt.Dimension is never used
+line: 5 The import java.awt.Graphics is never used
+line: 6 The import java.awt.Graphics2D is never used
+line: 7 The import java.awt.Image is never used
+line: 8 The import java.awt.Label is never used
+line: 9 The import java.awt.Panel is never used
+line: 10 The import java.awt.Point is never used
+line: 11 The import java.awt.TextArea is never used
+line: 12 The import java.awt.TextField is never used
+line: 13 The import java.awt.Toolkit is never used
+line: 16 The import java.awt.event.MouseAdapter is never used
+line: 17 The import java.awt.event.MouseEvent is never used
+line: 18 The import java.awt.event.WindowAdapter is never used
+line: 19 The import java.awt.event.WindowEvent is never used
+line: 20 The import java.awt.image.BufferedImage is never used
+line: 21 The import java.io.BufferedReader is never used
+line: 22 The import java.io.IOException is never used
+line: 23 The import java.io.InputStreamReader is never used
+line: 24 The import java.io.PrintWriter is never used
+line: 25 The import java.net.Socket is never used
+line: 26 The import java.util.StringTokenizer is never used
+line: 27 The import javax.imageio.ImageIO is never used
+line: 28 The import javax.swing.ImageIcon is never used
+line: 30 The import javax.swing.JLabel is never used
+line: 31 The import java.awt.Font is never used
+line: 32 The import javax.swing.JButton is never used
+line: 33 The serializable class OmokClient does not declare a static final serialVersionUID field of type long
+line: 65 The method endGame(String) from the type OmokClient is never used locally
+line: 66 The method playersInfo() from the type OmokClient is never used locally
+line: 67 The method nameList(String) from the type OmokClient is never used locally
+line: 68 The method roomList(String) from the type OmokClient is never used locally
+line: 71 The value of the local variable arg0 is not used
+line: 72 The value of the local variable toolkit is not used
+line: 73 The value of the local variable size is not used
+line: 74 The value of the local variable title is not used
+	at org.eclipse.wb.internal.core.utils.ast.AstParser.parseStatement(AstParser.java:162)
+	at org.eclipse.wb.internal.core.utils.ast.AstParser.parseExpression(AstParser.java:111)
+	at org.eclipse.wb.internal.core.utils.ast.AstEditor.replaceExpressionString(AstEditor.java:1085)
+	at org.eclipse.wb.internal.core.utils.ast.AstEditor.replaceExpression(AstEditor.java:1035)
+	at org.eclipse.wb.internal.core.utils.ast.AstEditor.replaceInvocationExpression(AstEditor.java:3407)
+	at org.eclipse.wb.internal.swing.parser.SwingRewriteProcessor$3.endVisitEx(SwingRewriteProcessor.java:114)
+	at org.eclipse.wb.internal.core.utils.ast.AstVisitorEx.endVisit(AstVisitorEx.java:75)
+	at org.eclipse.jdt.core.dom.MethodInvocation.accept0(MethodInvocation.java:230)
+	at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:3012)
+	at org.eclipse.jdt.core.dom.ASTNode.acceptChild(ASTNode.java:3060)
+	at org.eclipse.jdt.core.dom.ExpressionStatement.accept0(ExpressionStatement.java:136)
+	at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:3012)
+	at org.eclipse.jdt.core.dom.ASTNode.acceptChildren(ASTNode.java:3083)
+	at org.eclipse.jdt.core.dom.Block.accept0(Block.java:128)
+	at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:3012)
+	at org.eclipse.jdt.core.dom.ASTNode.acceptChild(ASTNode.java:3060)
+	at org.eclipse.jdt.core.dom.TryStatement.accept0(TryStatement.java:274)
+	at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:3012)
+	at org.eclipse.jdt.core.dom.ASTNode.acceptChildren(ASTNode.java:3083)
+	at org.eclipse.jdt.core.dom.Block.accept0(Block.java:128)
+	at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:3012)
+	at org.eclipse.jdt.core.dom.ASTNode.acceptChild(ASTNode.java:3060)
+	at org.eclipse.jdt.core.dom.MethodDeclaration.accept0(MethodDeclaration.java:698)
+	at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:3012)
+	at org.eclipse.jdt.core.dom.ASTNode.acceptChildren(ASTNode.java:3083)
+	at org.eclipse.jdt.core.dom.AnonymousClassDeclaration.accept0(AnonymousClassDeclaration.java:135)
+	at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:3012)
+	at org.eclipse.jdt.core.dom.ASTNode.acceptChild(ASTNode.java:3060)
+	at org.eclipse.jdt.core.dom.ClassInstanceCreation.accept0(ClassInstanceCreation.java:305)
+	at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:3012)
+	at org.eclipse.jdt.core.dom.ASTNode.acceptChildren(ASTNode.java:3083)
+	at org.eclipse.jdt.core.dom.MethodInvocation.accept0(MethodInvocation.java:228)
+	at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:3012)
+	at org.eclipse.jdt.core.dom.ASTNode.acceptChild(ASTNode.java:3060)
+	at org.eclipse.jdt.core.dom.ExpressionStatement.accept0(ExpressionStatement.java:136)
+	at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:3012)
+	at org.eclipse.jdt.core.dom.ASTNode.acceptChildren(ASTNode.java:3083)
+	at org.eclipse.jdt.core.dom.Block.accept0(Block.java:128)
+	at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:3012)
+	at org.eclipse.jdt.core.dom.ASTNode.acceptChild(ASTNode.java:3060)
+	at org.eclipse.jdt.core.dom.MethodDeclaration.accept0(MethodDeclaration.java:698)
+	at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:3012)
+	at org.eclipse.jdt.core.dom.ASTNode.acceptChildren(ASTNode.java:3083)
+	at org.eclipse.jdt.core.dom.TypeDeclaration.accept0(TypeDeclaration.java:526)
+	at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:3012)
+	at org.eclipse.wb.internal.swing.parser.SwingRewriteProcessor.rewrite_RootPaneContainer(SwingRewriteProcessor.java:103)
+	at org.eclipse.wb.internal.swing.parser.SwingRewriteProcessor.rewrite(SwingRewriteProcessor.java:58)
+	at org.eclipse.wb.internal.swing.parser.ParseFactory.getRootContext(ParseFactory.java:104)
+	at org.eclipse.wb.internal.core.parser.JavaInfoParser.prepareParseContext(JavaInfoParser.java:1191)
+	at org.eclipse.wb.internal.core.parser.JavaInfoParser.parse(JavaInfoParser.java:244)
+	at org.eclipse.wb.internal.core.parser.JavaInfoParser$1.runObject(JavaInfoParser.java:153)
+	at org.eclipse.wb.internal.core.parser.JavaInfoParser$1.runObject(JavaInfoParser.java:1)
+	at org.eclipse.wb.internal.core.utils.execution.ExecutionUtils.runDesignTime(ExecutionUtils.java:160)
+	at org.eclipse.wb.internal.core.parser.JavaInfoParser.parse(JavaInfoParser.java:150)
+	at org.eclipse.wb.internal.core.editor.DesignPage.internal_refreshGEF(DesignPage.java:553)
+	at org.eclipse.wb.internal.core.editor.DesignPage$8$1.run(DesignPage.java:468)
+	at org.eclipse.swt.widgets.Synchronizer.syncExec(Synchronizer.java:236)
+	at org.eclipse.ui.internal.UISynchronizer.syncExec(UISynchronizer.java:133)
+	at org.eclipse.swt.widgets.Display.syncExec(Display.java:4742)
+	at org.eclipse.wb.internal.core.editor.DesignPage$8.run(DesignPage.java:464)
+	at org.eclipse.jface.operation.ModalContext.runInCurrentThread(ModalContext.java:436)
+	at org.eclipse.jface.operation.ModalContext.run(ModalContext.java:352)
+	at org.eclipse.jface.dialogs.ProgressMonitorDialog.run(ProgressMonitorDialog.java:468)
+	at org.eclipse.wb.internal.core.editor.DesignPage.internal_refreshGEF_withProgress(DesignPage.java:484)
+	at org.eclipse.wb.internal.core.editor.DesignPage.internal_refreshGEF(DesignPage.java:432)
+	at org.eclipse.wb.internal.core.editor.UndoManager.refreshDesignerEditor(UndoManager.java:389)
+	at org.eclipse.wb.internal.core.editor.UndoManager.activate(UndoManager.java:90)
+	at org.eclipse.wb.internal.core.editor.DesignPage.handleActiveState_True(DesignPage.java:275)
+	at org.eclipse.wb.internal.core.editor.DesignPage.handleActiveState(DesignPage.java:252)
+	at org.eclipse.wb.internal.core.editor.multi.DefaultMultiMode.showPage(DefaultMultiMode.java:127)
+	at org.eclipse.wb.internal.core.editor.multi.DefaultMultiMode$1.widgetSelected(DefaultMultiMode.java:63)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:252)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:89)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4209)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1037)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1061)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1046)
+	at org.eclipse.swt.widgets.Widget.notifyListeners(Widget.java:760)
+	at org.eclipse.swt.custom.CTabFolder.setSelection(CTabFolder.java:3241)
+	at org.eclipse.swt.custom.CTabFolder.onMouse(CTabFolder.java:1879)
+	at org.eclipse.swt.custom.CTabFolder.lambda$0(CTabFolder.java:330)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:89)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4209)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1037)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4026)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3626)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1157)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1046)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:644)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:551)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:156)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:152)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:401)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:653)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:590)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1461)
+Caused by: org.eclipse.wb.internal.core.utils.exception.DesignerException: 205 (Unable to parse source.). import java.awt.BorderLayout;
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Label;
+import java.awt.Panel;
+import java.awt.Point;
+import java.awt.TextArea;
+import java.awt.TextField;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.util.StringTokenizer;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JButton;
+class OmokClient extends JFrame implements Runnable, ActionListener {
+static java.lang.String myblack=(java.lang.String) null;
+static java.lang.String mywhite=(java.lang.String) null;
+static java.awt.TextArea msgView=(java.awt.TextArea) null;
+java.awt.TextField sendBox=(java.awt.TextField) null;
+java.awt.TextField roomName=(java.awt.TextField) null;
+java.awt.TextField roomPassword=(java.awt.TextField) null;
+static java.awt.TextField nameBox=(java.awt.TextField) null;
+java.awt.Label pInfo=(java.awt.Label) null;
+java.awt.List pList=(java.awt.List) null;
+java.awt.List rList=(java.awt.List) null;
+javax.swing.JLabel makeRoom=(javax.swing.JLabel) null;
+javax.swing.JLabel enterButton=(javax.swing.JLabel) null;
+javax.swing.JLabel exitButton=(javax.swing.JLabel) null;
+java.awt.Label infoView=(java.awt.Label) null;
+OmokBoard board=(OmokBoard) null;
+java.io.BufferedReader reader=(java.io.BufferedReader) null;
+java.io.PrintWriter writer=(java.io.PrintWriter) null;
+java.net.Socket socket=(java.net.Socket) null;
+int roomNumber=0;
+java.lang.String userName=(java.lang.String) null;
+java.awt.Panel p1=(java.awt.Panel) null;
+java.awt.Panel p2=(java.awt.Panel) null;
+java.awt.Panel p3=(java.awt.Panel) null;
+javax.swing.JFrame f1=(javax.swing.JFrame) null;
+javax.swing.JLabel ready=(javax.swing.JLabel) null;
+javax.swing.JLabel quit=(javax.swing.JLabel) null;
+javax.swing.JLabel readyback=(javax.swing.JLabel) null;
+javax.swing.JLabel battleground=(javax.swing.JLabel) null;
+public void actionPerformed(ActionEvent ae){}
+void goToWaitRoom(){}
+public void run(){}
+private void endGame(String msg){}
+private void playersInfo(){}
+private void nameList(String msg){}
+private void roomList(String msg) {}
+public void connect(){}
+OmokClient(Object __wbp_param) {
+super();java.awt.event.MouseEvent arg0 = (java.awt.event.MouseEvent) null;
+java.awt.Toolkit toolkit = (java.awt.Toolkit) null;
+java.awt.Dimension size = (java.awt.Dimension) null;
+java.lang.String title = (java.lang.String) null;
+java.lang.System.out.println(f1.getContentPane());}
+} line: 1 The import java.awt.BorderLayout is never used
+line: 2 The import java.awt.Canvas is never used
+line: 3 The import java.awt.Color is never used
+line: 4 The import java.awt.Dimension is never used
+line: 5 The import java.awt.Graphics is never used
+line: 6 The import java.awt.Graphics2D is never used
+line: 7 The import java.awt.Image is never used
+line: 8 The import java.awt.Label is never used
+line: 9 The import java.awt.Panel is never used
+line: 10 The import java.awt.Point is never used
+line: 11 The import java.awt.TextArea is never used
+line: 12 The import java.awt.TextField is never used
+line: 13 The import java.awt.Toolkit is never used
+line: 16 The import java.awt.event.MouseAdapter is never used
+line: 17 The import java.awt.event.MouseEvent is never used
+line: 18 The import java.awt.event.WindowAdapter is never used
+line: 19 The import java.awt.event.WindowEvent is never used
+line: 20 The import java.awt.image.BufferedImage is never used
+line: 21 The import java.io.BufferedReader is never used
+line: 22 The import java.io.IOException is never used
+line: 23 The import java.io.InputStreamReader is never used
+line: 24 The import java.io.PrintWriter is never used
+line: 25 The import java.net.Socket is never used
+line: 26 The import java.util.StringTokenizer is never used
+line: 27 The import javax.imageio.ImageIO is never used
+line: 28 The import javax.swing.ImageIcon is never used
+line: 30 The import javax.swing.JLabel is never used
+line: 31 The import java.awt.Font is never used
+line: 32 The import javax.swing.JButton is never used
+line: 33 The serializable class OmokClient does not declare a static final serialVersionUID field of type long
+line: 65 The method endGame(String) from the type OmokClient is never used locally
+line: 66 The method playersInfo() from the type OmokClient is never used locally
+line: 67 The method nameList(String) from the type OmokClient is never used locally
+line: 68 The method roomList(String) from the type OmokClient is never used locally
+line: 71 The value of the local variable arg0 is not used
+line: 72 The value of the local variable toolkit is not used
+line: 73 The value of the local variable size is not used
+line: 74 The value of the local variable title is not used
+	at org.eclipse.wb.internal.core.utils.ast.AstParser.findNode(AstParser.java:773)
+	at org.eclipse.wb.internal.core.utils.ast.AstParser.parseStatement(AstParser.java:159)
+	... 106 more
+Caused by: java.lang.NoSuchMethodError: 'java.lang.String[] org.eclipse.jdt.core.dom.IMethodBinding.getParameterNames()'
+	at org.eclipse.wb.internal.core.utils.ast.binding.DesignerMethodBinding.<init>(DesignerMethodBinding.java:56)
+	at org.eclipse.wb.internal.core.utils.ast.binding.BindingContext.get(BindingContext.java:87)
+	at org.eclipse.wb.internal.core.utils.ast.binding.DesignerTypeBinding.<init>(DesignerTypeBinding.java:160)
+	at org.eclipse.wb.internal.core.utils.ast.binding.BindingContext.get(BindingContext.java:70)
+	at org.eclipse.wb.internal.core.utils.ast.binding.DesignerTypeBinding.<init>(DesignerTypeBinding.java:146)
+	at org.eclipse.wb.internal.core.utils.ast.binding.BindingContext.get(BindingContext.java:70)
+	at org.eclipse.wb.internal.core.utils.ast.AstParser$3.postVisit(AstParser.java:946)
+	at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:3015)
+	at org.eclipse.jdt.core.dom.ASTNode.acceptChild(ASTNode.java:3060)
+	at org.eclipse.jdt.core.dom.QualifiedName.accept0(QualifiedName.java:163)
+	at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:3012)
+	at org.eclipse.jdt.core.dom.ASTNode.acceptChild(ASTNode.java:3060)
+	at org.eclipse.jdt.core.dom.QualifiedName.accept0(QualifiedName.java:162)
+	at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:3012)
+	at org.eclipse.jdt.core.dom.ASTNode.acceptChild(ASTNode.java:3060)
+	at org.eclipse.jdt.core.dom.MethodInvocation.accept0(MethodInvocation.java:223)
+	at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:3012)
+	at org.eclipse.jdt.core.dom.ASTNode.acceptChild(ASTNode.java:3060)
+	at org.eclipse.jdt.core.dom.ExpressionStatement.accept0(ExpressionStatement.java:136)
+	at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:3012)
+	at org.eclipse.wb.internal.core.utils.ast.AstParser.copyBindings(AstParser.java:925)
+	at org.eclipse.wb.internal.core.utils.ast.AstParser.findNode0(AstParser.java:827)
+	at org.eclipse.wb.internal.core.utils.ast.AstParser.findNode(AstParser.java:770)
+	... 107 more
+
+!ENTRY org.eclipse.debug.ui 4 120 2022-11-19 17:17:59.664
+!MESSAGE Error logged from Debug UI: 
+!STACK 0
+java.lang.InterruptedException
+	at java.base/java.util.concurrent.FutureTask.awaitDone(FutureTask.java:418)
+	at java.base/java.util.concurrent.FutureTask.get(FutureTask.java:203)
+	at org.eclipse.debug.internal.ui.stringsubstitution.SelectedResourceManager.runInUIThreadWithTimeout(SelectedResourceManager.java:262)
+	at org.eclipse.debug.internal.ui.stringsubstitution.SelectedResourceManager.getFromUI(SelectedResourceManager.java:240)
+	at org.eclipse.debug.internal.ui.stringsubstitution.SelectedResourceManager.getActiveWindow(SelectedResourceManager.java:231)
+	at org.eclipse.debug.ui.DebugUITools.getDebugContext(DebugUITools.java:247)
+	at org.eclipse.jdt.internal.debug.ui.JavaDebugHover.getFrame(JavaDebugHover.java:97)
+	at org.eclipse.jdt.internal.debug.ui.JavaDebugHover.getHoverInfo2(JavaDebugHover.java:251)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)

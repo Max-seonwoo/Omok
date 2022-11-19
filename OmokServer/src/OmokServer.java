@@ -69,7 +69,7 @@ public class OmokServer implements Runnable{
 						userName=msg.substring(6);          // userName을 정한다.
 					}
 					// msg가 "[ROOM]"으로 시작되면 방 번호를 정한다.
-					/*else if(msg.startsWith("[ROOM]")){
+					else if(msg.startsWith("[ROOM]")){
 						int roomNum=Integer.parseInt(msg.substring(6));
 						if(!Man.isFull(roomNum)){             // 방이 찬 상태가 아니면
 							// 현재 방의 다른 사용에게 사용자의 퇴장을 알린다.
@@ -85,12 +85,12 @@ public class OmokServer implements Runnable{
 							Man.sendToOthers(this, "[ENTER]"+userName);
 						}
 						else writer.println("[FULL]");        // 사용자에 방이 찼음을 알린다.
-					}*/
+					}
 					
 					else if(msg.startsWith("[ROOMNAME]")) {
 						String roomname = msg.substring(10);
 						if(!Man.isFull(roomname)) { 
-							if(roomName != "") {
+							if(!roomName.equals("")) {
 								Man.sendToOthers(this, "[EXIT]" + userName);
 								//Man.sendToOthers(this, "[EXIT]" + roomName);
 							}
@@ -98,6 +98,7 @@ public class OmokServer implements Runnable{
 							writer.println(msg);
 							writer.println(Man.getNamesInRoom(roomName));
 							
+							Man.sendToOthers(this, "[ENTER]" + userName);
 							Man.sendToOthers(this, "[ROOMENTER]" + roomName);
 						}
 						else 
@@ -203,7 +204,7 @@ public class OmokServer implements Runnable{
 		}*/
 		
 		synchronized boolean isFull(String roomname) {
-			if(roomname == "")
+			if(roomname == null)
 				return false;
 			int count = 0;
 			for(int i = 0; i < size(); i++) 

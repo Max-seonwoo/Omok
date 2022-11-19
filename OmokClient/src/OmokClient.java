@@ -84,7 +84,7 @@ class OmokBoard extends Canvas{
 					OmokClient.msgView.append("승리하였습니다.\n");
 					writer.println("[WIN]");
 				}
-				else OmokClient.msgView.append("기다리세요.\n");
+				else OmokClient.msgView.append("돌을 놓았습니다, 기다리세요.\n");
 				
 				// 사용자가 둘 수 없는 상태로 만든다.
 				// 상대편이 두면 enable이 true가 되어 사용자가 둘 수 있게 된다.
@@ -118,7 +118,8 @@ class OmokBoard extends Canvas{
 
 	public void putOpponent(int x, int y){       // 상대편의 돌을 놓는다.
 		map[x][y]=-color;
-		OmokClient.msgView.append("상대가 두었습니다.\n");
+		OmokClient.msgView.append("당신 차례입니다\n");
+		//OmokClient.msgView.append("상대가 두었습니다.\n");
 		repaint();
 	}
 
@@ -236,8 +237,8 @@ public class OmokClient extends JFrame implements Runnable, ActionListener {
 	 */
 	public static TextArea msgView=new TextArea("", 1,1,1); // 메시지를 보여주는 영역
 	private TextField sendBox=new TextField(""); // 보낼 메시지를 적는 상자
-	private TextField roomName = new TextField("");
-	private TextField roomPassword = new TextField("");
+	private TextField roomNameBox = new TextField("");
+	//private TextField roomPassword = new TextField("");
 	public static TextField nameBox=new TextField(); // 사용자 이름 상자
 	//private TextField roomBox=new TextField("0"); // 방 번호 상자
 
@@ -256,10 +257,10 @@ public class OmokClient extends JFrame implements Runnable, ActionListener {
 	private Socket socket; // 소켓
 	private int roomNumber=-1; // 방 번호
 	private String userName=null; // 사용자 이름
+	private String roomName = null;
 
 	Panel p1=new Panel();
 	Panel p2=new Panel();
-	Panel p3 = new Panel();
 	
 	JFrame f1 = new JFrame("Create Room");
 	
@@ -291,31 +292,18 @@ public class OmokClient extends JFrame implements Runnable, ActionListener {
 		infoView.hide();
 		// 바로 밑에 있는 패널
 		
-		//p1.setBackground(new Color(51, 51, 255)); //p2.setBackground(new Color(50, 205, 50));
 		p1.setLayout(new BorderLayout());
-		p1.add(rList, BorderLayout.CENTER); //p1.add(pList,BorderLayout.CENTER); 
-		p1.setBounds(55,300,380,300); //p2.setBounds(55,340,1170,300);
+		p1.add(rList, BorderLayout.CENTER); 
+		p1.setBounds(55,300,380,300); 
+		p1.setVisible(true);
 
 		p2.setLayout(new BorderLayout());
-		p2.add(msgView, BorderLayout.CENTER); //p3.add(msgView, BorderLayout.CENTER);
+		p2.add(msgView, BorderLayout.CENTER);
 		// 각종 컴포넌트를 생성하고 배치한다.
 		msgView.setEditable(false);
-		sendBox.setFont(new Font("맑은 고딕", Font.BOLD, 15)); //sendBox.setFont(new Font("맑은 고딕", Font.BOLD, 30));
-		p2.add(sendBox, "South");  //p3.add(sendBox, "North");
-		p2.setBounds(450, 300, 380, 300); //p3.setBounds(55, 660, 1170,250);
-		
-		p3.setLayout(new BorderLayout());
-		//p3.setBackground(new Color(0, 102, 255));	
-		//getContentPane().add(roomName);
-		//roomName.hide();
-		//roomPassword.hide();
-		//getContentPane().add(roomPassword);
-		
-		p3.setBounds(250, 250, 400, 300);
-		p3.hide();	
-		
-		
-		
+		sendBox.setFont(new Font("맑은 고딕", Font.BOLD, 15)); 
+		p2.add(sendBox, "South"); 
+		p2.setBounds(450, 300, 380, 300);
 		
 		enterButton.addMouseListener(new MouseAdapter() {
 			@Override
@@ -327,15 +315,16 @@ public class OmokClient extends JFrame implements Runnable, ActionListener {
 			}
 			public void mouseClicked(MouseEvent arg0) {
 				try {
-					writer.println("[ROOMNAME]" + roomName.getText());
-					//writer.println("[ENTER]" + userName.getText());
-					//writer.println("[ROOMPASSWORD]" + Integer.parseInt(roomPassword.getText()));
-					roomName.hide();
-					roomPassword.hide();
+					msgView.setText("");
+					if(roomNameBox.getText().equals("")){
+						infoView.setText("방 이름을 잘못 입력하였습니다.\n");
+						return;
+					}
+					writer.println("[ROOMNAME]" + roomNameBox.getText());
+					writer.println("[ENTER]" + userName);
 					makeRoom.hide();
 					nameBox.hide();
 					pInfo.hide();
-					enterButton.hide();
 					board.show();
 					ready.show();
 					quit.show();
@@ -345,12 +334,11 @@ public class OmokClient extends JFrame implements Runnable, ActionListener {
 					exitButton.show();
 					p2.setBounds(500, 320, 350, 300);
 					p2.show();
-					enterButton.hide();
-					p3.hide();
 					p1.hide();
 					f1.setVisible(false);
+					exitButton.setEnabled(true);
 				}catch(Exception ie) {
-					
+					infoView.setText("입력하신 사항에 오류가 았습니다.");
 				}
 			}
 		});
@@ -358,7 +346,7 @@ public class OmokClient extends JFrame implements Runnable, ActionListener {
 		
 		
 		
-		makeRoom.setBounds(700, 205, 130, 46); //enterButton2.setBounds(1000, 128, 233, 120);
+		makeRoom.setBounds(700, 205, 130, 46);
 		getContentPane().add(makeRoom);
 		makeRoom.addMouseListener(new MouseAdapter(){
 			@Override
@@ -370,24 +358,18 @@ public class OmokClient extends JFrame implements Runnable, ActionListener {
 			}
 			public void mouseClicked(MouseEvent arg0){
 				try{
-					msgView.setText("");
-					/*if(Integer.parseInt(roomBox.getText())<1){
-						infoView.setText("방번호가 잘못되었습니다. 1이상");
-						return;
-					}*/
 					//writer.println("[ROOM]"+Integer.parseInt(roomBox.getText()));
+					roomNameBox.setText("");
 					f1.add(enterButton);
-					f1.add(roomName);
-					f1.add(roomPassword);
+					f1.add(roomNameBox);
 					f1.setBounds(550, 300, 400, 300);
-					roomName.setBounds(100, 100, 190, 30);
-					roomPassword.setBounds(100, 140, 190, 30);
+					roomNameBox.setBounds(100, 100, 190, 30);
 					enterButton.setBounds(310, 230, 60, 21);
 					f1.setLayout(null);
 					f1.setLayout(null);
 					f1.setVisible(true);
 				}catch(Exception ie){
-					infoView.setText("입력하신 사항에 오류가 았습니다.");
+					
 				}
 			}
 		});	
@@ -552,7 +534,7 @@ public class OmokClient extends JFrame implements Runnable, ActionListener {
 		}  
 		msgView.setText("");
 		// 대기실은 ROOM 중에서 0에 해당한다.
-		writer.println("[ROOM]0");
+		writer.println("[ROOMENTER]0");
 		infoView.setText("대기실에 입장하셨습니다.");
 		//roomBox.setText("0");
 		enterButton.setEnabled(true);
@@ -576,7 +558,7 @@ public class OmokClient extends JFrame implements Runnable, ActionListener {
 				/*여기는 방에 입장하는 것과 나가는 것에 관련한 것
 				 * 
 				 */
-				else if(msg.startsWith("[ROOM]")){    // 방에 입장
+				/*else if(msg.startsWith("[ROOM]")){    // 방에 입장
 					if(!msg.equals("[ROOM]0")){          // 대기실이 아닌 방이면
 						enterButton.setEnabled(false);
 						exitButton.setEnabled(true);
@@ -587,9 +569,9 @@ public class OmokClient extends JFrame implements Runnable, ActionListener {
 					if(board.isRunning()){                    // 게임이 진행중인 상태이면
 						board.stopGame();                    // 게임을 중지시킨다.
 					}
-				}
+				}*/
 				else if(msg.startsWith("[FULL]")){       // 방이 찬 상태이면
-					infoView.setText("방이 차서 입장할 수 없습니다.");
+					infoView.setText("당신은 관전자입니다.\n");
 				}
 				else if(msg.startsWith("[PLAYERS]")){      // 방에 있는 사용자 명단
 					nameList(msg.substring(9));
@@ -600,7 +582,19 @@ public class OmokClient extends JFrame implements Runnable, ActionListener {
 					msgView.append("["+ msg.substring(7)+"]님이 입장하였습니다.\n");
 				}
 				else if(msg.startsWith("[ROOMENTER]")) {
-					rList.add(msg.substring(11));
+					if(!msg.equals("[ROOMENTER]0")){          // 대기실이 아닌 방이면
+						//enterButton.setEnabled(false);
+						//exitButton.setEnabled(true);
+						rList.add(msg.substring(11));
+						infoView.setText(msg.substring(11)+"방에 입장하셨습니다.");
+					}
+					else 
+						infoView.setText("대기실에 입장하셨습니다.");
+					//roomNumber=Integer.parseInt(msg.substring(6));     // 방 번호 지정
+					roomName =  msg.substring(11);
+					if(board.isRunning()){                    // 게임이 진행중인 상태이면
+						board.stopGame();                    // 게임을 중지시킨다.
+					}
 				}
 				else if(msg.startsWith("[EXIT]")){          // 손님 퇴장
 					pList.remove(msg.substring(6));// 리스트에서 제거

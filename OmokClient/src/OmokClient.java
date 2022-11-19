@@ -1,11 +1,11 @@
 import java.awt.BorderLayout;
-import java.awt.Button;
+//import java.awt.Button;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.GridLayout;
+//import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Label;
 import java.awt.Panel;
@@ -236,33 +236,36 @@ public class OmokClient extends JFrame implements Runnable, ActionListener {
 	 */
 	public static TextArea msgView=new TextArea("", 1,1,1); // 메시지를 보여주는 영역
 	private TextField sendBox=new TextField(""); // 보낼 메시지를 적는 상자
+	private TextField roomName = new TextField("");
+	private TextField roomPassword = new TextField("");
 	public static TextField nameBox=new TextField(); // 사용자 이름 상자
-	private TextField roomBox=new TextField("0"); // 방 번호 상자
+	//private TextField roomBox=new TextField("0"); // 방 번호 상자
 
 	// 방에 접속한 인원의 수를 보여주는 레이블
 	private Label pInfo=new Label("대기실:  명");
 	private java.awt.List pList=new java.awt.List();  // 사용자 명단을 보여주는 리스트
-	public Button startButton=new Button("대국 시작");    // 대국 시작 버튼
-	public Button stopButton=new Button("기권");         // 기권 버튼
-	private Button enterButton=new Button("입장하기");    // 입장하기 버튼
-	private Button exitButton=new Button("대기실로");      // 대기실로 버튼
-	JLabel enterButton2 = new JLabel("");
-	JLabel exitButton2 = new JLabel("");
+	private java.awt.List rList = new java.awt.List(); //방 명단을 보여주는 리스트
+	JLabel makeRoom = new JLabel("");
+	JLabel enterButton = new JLabel("");
+	JLabel exitButton = new JLabel("");
 	// 각종 정보를 보여주는 레이블
 	private Label infoView=new Label("오목 게임에 온 것을 환영합니다.", 1);
-	private OmokBoard board=new OmokBoard(15,50); // 오목판 객체(이게 거의 모든 것을 담당)
+	private OmokBoard board=new OmokBoard(15,30); // 오목판 객체(이게 거의 모든 것을 담당) //private OmokBoard board=new OmokBoard(15,50);
 	private BufferedReader reader; // 입력 스트림
 	private PrintWriter writer; // 출력 스트림
 	private Socket socket; // 소켓
 	private int roomNumber=-1; // 방 번호
 	private String userName=null; // 사용자 이름
 
+	Panel p1=new Panel();
 	Panel p2=new Panel();
-	Panel p=new Panel();
-	Panel p3=new Panel();
+	Panel p3 = new Panel();
+	
+	JFrame f1 = new JFrame("Create Room");
+	
 
-	JLabel go = new JLabel("");
-	JLabel no = new JLabel("");
+	JLabel ready = new JLabel("");
+	JLabel quit = new JLabel("");
 	JLabel readyback = new JLabel("");
 	JLabel battleground = new JLabel("");
 	
@@ -270,165 +273,188 @@ public class OmokClient extends JFrame implements Runnable, ActionListener {
 		super(title);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);   
-		infoView.setFont(new Font("맑은 고딕", Font.BOLD, 30));
-		infoView.setBounds(831,281,429,40);
-		infoView.setBackground(new Color(60, 179, 113));
+		infoView.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+		infoView.setBounds(500,281,350,40);
+		infoView.setBackground(new Color(51, 51, 255));
 		nameBox.setBackground(Color.WHITE);
 		nameBox.setForeground(Color.BLACK);
 		nameBox.setFont(new Font("문체부 돋음체", Font.BOLD, 30));
-		nameBox.setBounds(165, 161, 214, 58);
+		nameBox.setBounds(175, 125, 190, 40); //nameBox.setBounds(165, 161, 214, 58);
 		getContentPane().add(nameBox);
-		roomBox.setFont(new Font("맑은 고딕", Font.BOLD, 30));
-		roomBox.setBounds(680, 161, 300, 58);
-		getContentPane().add(roomBox);
+		//roomBox.setFont(new Font("맑은 고딕", Font.BOLD, 30));
+		//roomBox.setBounds(550, 125, 190, 40); //roomBox.setBounds(680, 161, 300, 58);
+		//getContentPane().add(roomBox);
 		getContentPane().add(infoView);
 		Toolkit toolkit = getToolkit();
 		Dimension size = toolkit.getScreenSize();
-		setLocation(size.width/2 - 640, size.height/2 - 500);
-		
-		
-		// 오른쪽 윗 부분의 패널
-		p.setBackground(new Color(200,255,255));
-		p.setLayout(new GridLayout(3,3));
-		// 입장하기
-		p.add(enterButton);
-		// 대기실로
-		p.add(exitButton);
-		exitButton.hide();
-		enterButton.setEnabled(false);
-		p.setBounds(2000,366,250,70);
+		setLocation(size.width/2 - 640, size.height/2 - 200);
 		infoView.hide();
-		startButton.hide();
-		stopButton.hide();
 		// 바로 밑에 있는 패널
 		
-		p2.setBackground(new Color(50, 205, 50));
-		p2.setLayout(new BorderLayout());
-		p2.add(pList,BorderLayout.CENTER);
-		p2.setBounds(55,340,1170,300);
+		//p1.setBackground(new Color(51, 51, 255)); //p2.setBackground(new Color(50, 205, 50));
+		p1.setLayout(new BorderLayout());
+		p1.add(rList, BorderLayout.CENTER); //p1.add(pList,BorderLayout.CENTER); 
+		p1.setBounds(55,300,380,300); //p2.setBounds(55,340,1170,300);
 
-		p3.setLayout(new BorderLayout());
-		p3.add(msgView, BorderLayout.CENTER);
+		p2.setLayout(new BorderLayout());
+		p2.add(msgView, BorderLayout.CENTER); //p3.add(msgView, BorderLayout.CENTER);
 		// 각종 컴포넌트를 생성하고 배치한다.
 		msgView.setEditable(false);
-		sendBox.setFont(new Font("맑은 고딕", Font.BOLD, 30));
-		p3.add(sendBox, "South");
-		p3.setBounds(55, 660, 1170,250);
-		enterButton2.setBounds(1000, 128, 233, 120);
-		getContentPane().add(enterButton2);
-		enterButton2.addMouseListener(new MouseAdapter(){
+		sendBox.setFont(new Font("맑은 고딕", Font.BOLD, 15)); //sendBox.setFont(new Font("맑은 고딕", Font.BOLD, 30));
+		p2.add(sendBox, "South");  //p3.add(sendBox, "North");
+		p2.setBounds(450, 300, 380, 300); //p3.setBounds(55, 660, 1170,250);
+		
+		p3.setLayout(new BorderLayout());
+		//p3.setBackground(new Color(0, 102, 255));	
+		//getContentPane().add(roomName);
+		//roomName.hide();
+		//roomPassword.hide();
+		//getContentPane().add(roomPassword);
+		
+		p3.setBounds(250, 250, 400, 300);
+		p3.hide();	
+		
+		
+		
+		
+		enterButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
-				enterButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("enter-hover.png")));
+				enterButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("go.png")));
 			}
 			public void mouseExited(MouseEvent arg0) {
-				enterButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("enter.png")));
+				enterButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("enter1.png")));
+			}
+			public void mouseClicked(MouseEvent arg0) {
+				try {
+					writer.println("[ROOMNAME]" + roomName.getText());
+					//writer.println("[ENTER]" + userName.getText());
+					//writer.println("[ROOMPASSWORD]" + Integer.parseInt(roomPassword.getText()));
+					roomName.hide();
+					roomPassword.hide();
+					makeRoom.hide();
+					nameBox.hide();
+					pInfo.hide();
+					enterButton.hide();
+					board.show();
+					ready.show();
+					quit.show();
+					readyback.show();
+					battleground.show();
+					infoView.show();
+					exitButton.show();
+					p2.setBounds(500, 320, 350, 300);
+					p2.show();
+					enterButton.hide();
+					p3.hide();
+					p1.hide();
+					f1.setVisible(false);
+				}catch(Exception ie) {
+					
+				}
+			}
+		});
+		enterButton.setIcon(new ImageIcon(Main.class.getResource("enter1.png")));
+		
+		
+		
+		makeRoom.setBounds(700, 205, 130, 46); //enterButton2.setBounds(1000, 128, 233, 120);
+		getContentPane().add(makeRoom);
+		makeRoom.addMouseListener(new MouseAdapter(){
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				makeRoom.setIcon(new javax.swing.ImageIcon(getClass().getResource("hs_enter.jpg")));
+			}
+			public void mouseExited(MouseEvent arg0) {
+				makeRoom.setIcon(new javax.swing.ImageIcon(getClass().getResource("hs_enter.jpg")));
 			}
 			public void mouseClicked(MouseEvent arg0){
 				try{
 					msgView.setText("");
-					if(Integer.parseInt(roomBox.getText())<1){
+					/*if(Integer.parseInt(roomBox.getText())<1){
 						infoView.setText("방번호가 잘못되었습니다. 1이상");
 						return;
-					}
-					writer.println("[ROOM]"+Integer.parseInt(roomBox.getText()));
-					board.show();
-					exitButton.show();
-					startButton.hide();
-					stopButton.hide();
-					enterButton2.hide();
-					roomBox.hide();
-					go.show();
-					no.show();
-					nameBox.hide();
-					readyback.hide();
-					battleground.show();
-					pInfo.hide();
-					p3.setBounds(822, 320, 430, 592);
-					p2.hide();
-					infoView.show();
-					exitButton2.show();
+					}*/
+					//writer.println("[ROOM]"+Integer.parseInt(roomBox.getText()));
+					f1.add(enterButton);
+					f1.add(roomName);
+					f1.add(roomPassword);
+					f1.setBounds(550, 300, 400, 300);
+					roomName.setBounds(100, 100, 190, 30);
+					roomPassword.setBounds(100, 140, 190, 30);
+					enterButton.setBounds(310, 230, 60, 21);
+					f1.setLayout(null);
+					f1.setLayout(null);
+					f1.setVisible(true);
 				}catch(Exception ie){
 					infoView.setText("입력하신 사항에 오류가 았습니다.");
 				}
 			}
 		});	
-		enterButton2.setIcon(new ImageIcon(Main.class.getResource("enter.png")));
-		exitButton2.setBounds(831, 209, 421, 68);
-		getContentPane().add(exitButton2);
-		exitButton2.addMouseListener(new MouseAdapter(){
+		makeRoom.setIcon(new ImageIcon(Main.class.getResource("hs_enter.jpg")));
+		
+		
+		exitButton.setBounds(500, 209, 421, 68);
+		getContentPane().add(exitButton);
+		exitButton.addMouseListener(new MouseAdapter(){
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
-				exitButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("toroom-hover.png")));
+				exitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("toroom-hover.png")));
 			}
 			public void mouseExited(MouseEvent arg0) {
-				exitButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("torooom.png")));
+				exitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("torooom.png")));
 			}
 			public void mouseClicked(MouseEvent arg0){
 				msgView.setText("");
 				goToWaitRoom();
 				board.hide();
-				exitButton.hide();
-				startButton.hide();
-				stopButton.hide();
-				enterButton2.show();
-				roomBox.show();
-				go.hide();
-				no.hide();
+				makeRoom.show();
+				ready.hide();
+				quit.hide();
 				nameBox.show();
 				readyback.show();
 				battleground.hide();
 				pInfo.show();
-				p3.setBounds(55, 660, 1170,250);
 				p2.show();
+				p2.setBounds(450, 300, 380, 300); //p3.setBounds(55, 660, 1170,250);
+				p1.show();
 				infoView.hide();
-				exitButton2.hide();
+				exitButton.hide();
+				
 			}
 		});
-		exitButton2.setIcon(new ImageIcon(Main.class.getResource("torooom.png")));
-		exitButton2.hide();
-		
-		startButton.setBounds(50, 80, 78, 25);
-		getContentPane().add(startButton);
-		
-			// 처음에는 선택할 수 없도록 되어있음
-			startButton.setEnabled(false);
-			startButton.addActionListener(this);
-		stopButton.setBounds(0, 0, 44, 25);
-		getContentPane().add(stopButton);
-		stopButton.setEnabled(false);
-		stopButton.addActionListener(this);
+		exitButton.setIcon(new ImageIcon(Main.class.getResource("torooom.png")));
+		exitButton.hide();
 		
 
-		go.addMouseListener(new MouseAdapter(){
+		ready.addMouseListener(new MouseAdapter(){
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
-				go.setIcon(new javax.swing.ImageIcon(getClass().getResource("go-hover.png")));
+				ready.setIcon(new javax.swing.ImageIcon(getClass().getResource("go-hover.png")));
 			}
 			public void mouseExited(MouseEvent arg0) {
-				go.setIcon(new javax.swing.ImageIcon(getClass().getResource("go.png")));
+				ready.setIcon(new javax.swing.ImageIcon(getClass().getResource("go.png")));
 			}
 			public void mouseClicked(MouseEvent arg0){
 				try{
 					writer.println("[START]");
 					infoView.setText("상대의 결정을 기다립니다.");
-					startButton.setEnabled(false);
 				}catch(Exception e){}
 			}
 		});
-		go.setIcon(new ImageIcon(Main.class.getResource("go.png")));
-		go.setBounds(831, 128, 209, 68);
-		getContentPane().add(go);
-		go.hide();
+		ready.setIcon(new ImageIcon(Main.class.getResource("go.png")));
+		ready.setBounds(500, 128, 209, 68);
+		getContentPane().add(ready);
+		ready.hide();
 		
 	
-		no.addMouseListener(new MouseAdapter(){
+		quit.addMouseListener(new MouseAdapter(){
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
-				no.setIcon(new javax.swing.ImageIcon(getClass().getResource("no-hover.png")));
+				quit.setIcon(new javax.swing.ImageIcon(getClass().getResource("no-hover.png")));
 			}
 			public void mouseExited(MouseEvent arg0) {
-				no.setIcon(new javax.swing.ImageIcon(getClass().getResource("no.png")));
+				quit.setIcon(new javax.swing.ImageIcon(getClass().getResource("no.png")));
 			}
 			public void mouseClicked(MouseEvent arg0){
 				try{
@@ -437,26 +463,27 @@ public class OmokClient extends JFrame implements Runnable, ActionListener {
 				}catch(Exception e){}
 			}
 		});
-		no.setIcon(new ImageIcon(Main.class.getResource("no.png")));
-		no.setBounds(1050, 128, 209, 68);
-		getContentPane().add(no);
-		no.hide();
+		quit.setIcon(new ImageIcon(Main.class.getResource("no.png")));
+		quit.setBounds(700, 128, 209, 68);
+		getContentPane().add(quit);
+		quit.hide();
 		
 		
 		
 		
-		pInfo.setBackground(new Color(50, 205, 50));
+		pInfo.setBackground(new Color(51, 51, 255)); //pInfo.setBackground(new Color(50, 205, 50));
 		pInfo.setFont(new Font("맑은 고딕", Font.BOLD, 30));
-		pInfo.setBounds(55, 250, 1170, 60);
+		pInfo.setBounds(52, 190, 800, 70); //pInfo.setBounds(55, 250, 1170, 60);
 		getContentPane().add(pInfo);
-		board.setBounds(20, 120, 795, 795);
+		board.setBounds(20, 110, 482, 476);
 		getContentPane().add(board);
-		board.hide();
-		getContentPane().add(p); getContentPane().add(p2);getContentPane().add(p3);
+		board.hide();getContentPane().add(p1);getContentPane().add(p2);
+		
+		 	
  
 		
-		readyback.setIcon(new ImageIcon(Main.class.getResource("ready.png")));
-		readyback.setBounds(0, 0, 1280, 1000);
+		readyback.setIcon(new ImageIcon(Main.class.getResource("HS_robby.jpg")));
+		readyback.setBounds(0, 0, 900, 703);
 		getContentPane().add(readyback);
 		
 		
@@ -471,9 +498,6 @@ public class OmokClient extends JFrame implements Runnable, ActionListener {
 		 
 		// 이벤트 리스너를 등록한다.
 		sendBox.addActionListener(this);
-		enterButton.addActionListener(this);
-		enterButton.hide();
-		exitButton.addActionListener(this);
 		// 윈도우 닫기 처리
 		addWindowListener(new WindowAdapter(){
 			public void windowClosing(WindowEvent we){
@@ -499,24 +523,14 @@ public class OmokClient extends JFrame implements Runnable, ActionListener {
 			}catch(Exception ie){}
 		}
 		
-		else if(ae.getSource()==enterButton2){         // 입장하기 버튼이면
+		else if(ae.getSource()==makeRoom){         // 입장하기 버튼이면
 
 		}
 
 		else if(ae.getSource()==exitButton){           // 대기실로 버튼이면
 			try{
 				goToWaitRoom();
-				startButton.setEnabled(false);
-				stopButton.setEnabled(false);
 			}catch(Exception e){}
-		}
-
-		else if(ae.getSource()==startButton){          // 대국 시작 버튼이면
-
-		}
-
-		else if(ae.getSource()==stopButton){          // 기권 버튼이면
-
 		}
 	}
 
@@ -540,7 +554,7 @@ public class OmokClient extends JFrame implements Runnable, ActionListener {
 		// 대기실은 ROOM 중에서 0에 해당한다.
 		writer.println("[ROOM]0");
 		infoView.setText("대기실에 입장하셨습니다.");
-		roomBox.setText("0");
+		//roomBox.setText("0");
 		enterButton.setEnabled(true);
 		exitButton.setEnabled(false);
 	}
@@ -585,8 +599,12 @@ public class OmokClient extends JFrame implements Runnable, ActionListener {
 					playersInfo();
 					msgView.append("["+ msg.substring(7)+"]님이 입장하였습니다.\n");
 				}
+				else if(msg.startsWith("[ROOMENTER]")) {
+					rList.add(msg.substring(11));
+				}
 				else if(msg.startsWith("[EXIT]")){          // 손님 퇴장
-					pList.remove(msg.substring(6));            // 리스트에서 제거
+					pList.remove(msg.substring(6));// 리스트에서 제거
+					//rList.remove(msg.substring(6));
 					playersInfo();                        // 인원수를 다시 계산하여 보여준다.
 					msgView.append("["+msg.substring(6)+"]님이 다른 방으로 입장하였습니다.\n");
 					endGame("상대가 나갔습니다.");
@@ -607,8 +625,7 @@ public class OmokClient extends JFrame implements Runnable, ActionListener {
 					if(color.equals("BLACK"))
 						infoView.setText("흑돌을 잡았습니다.");
 					else
-						infoView.setText("백돌을 잡았습니다.");
-					stopButton.setEnabled(true);                 // 기권 버튼 활성화
+						infoView.setText("백돌을 잡았습니다.");              // 기권 버튼 활성화
 				}
 				else if(msg.startsWith("[DROPGAME]"))      // 상대가 기권하면
 					endGame("상대가 기권하였습니다.");
@@ -627,23 +644,18 @@ public class OmokClient extends JFrame implements Runnable, ActionListener {
 	
 	private void endGame(String msg){                // 게임의 종료시키는 메소드
 		infoView.setText(msg);
-		startButton.setEnabled(false);
-		stopButton.setEnabled(false);
 		try{ Thread.sleep(2000); }catch(Exception e){}    // 2초간 대기
 		if(board.isRunning())board.stopGame();
-		if(pList.getItemCount()==2)startButton.setEnabled(true);
 	}
 	
 	private void playersInfo(){                 // 방에 있는 접속자의 수를 보여준다.
 		int count=pList.getItemCount();
 		if(roomNumber==0)
-			pInfo.setText("대기실: "+count+"명");
+			pInfo.setText("대기실: "+count+"명"); //대기실 인원 수
 		else pInfo.setText(roomNumber+" 번 방: "+count+"명");
 		// 대국 시작 버튼의 활성화 상태를 점검한다.
-		if(count==2 && roomNumber!=0)
-			startButton.setEnabled(true);
-		else startButton.setEnabled(false);
 	}
+	
 
 	// 사용자 리스트에서 사용자들을 추출하여 pList에 추가한다.
 	private void nameList(String msg){
@@ -652,6 +664,13 @@ public class OmokClient extends JFrame implements Runnable, ActionListener {
 		while(st.hasMoreElements())
 			pList.add(st.nextToken());
 		playersInfo();
+	}
+	
+	private void roomList(String msg) {
+		rList.removeAll();
+		StringTokenizer st = new StringTokenizer(msg, "\t");
+		while(st.hasMoreTokens())
+			rList.add(st.nextToken());
 	}
 	
 	public void connect(){ // 연결

@@ -31,7 +31,8 @@ public class OmokServer implements Runnable{
   
 	// 클라이언트와 통신하는 스레드 클래스
 	class controller extends Thread{
-		private int roomNumber = -1;        // 방 번호
+		private int roomNumber = -1;   // 방 번호
+		private String roomName = "";
 		private String userName = null;       // 사용자 이름
 		private Socket socket;              // 소켓
 		// 게임 준비 여부, true이면 게임을 시작할 준비가 되었음을 의미한다.
@@ -46,6 +47,9 @@ public class OmokServer implements Runnable{
 		}
 		int getRoomNumber(){             // 방 번호를 반환한다.
 			return roomNumber;
+		}
+		String getRoomName() {
+			return roomName;
 		}
 		String getUserName(){             // 사용자 이름을 반환한다.
 			return userName;
@@ -65,9 +69,9 @@ public class OmokServer implements Runnable{
 						userName=msg.substring(6);          // userName을 정한다.
 					}
 					// msg가 "[ROOM]"으로 시작되면 방 번호를 정한다.
-					else if(msg.startsWith("[ROOM]")){
+					/*else if(msg.startsWith("[ROOM]")){
 						int roomNum=Integer.parseInt(msg.substring(6));
-						if( !Man.isFull(roomNum)){             // 방이 찬 상태가 아니면
+						if(!Man.isFull(roomNum)){             // 방이 찬 상태가 아니면
 							// 현재 방의 다른 사용에게 사용자의 퇴장을 알린다.
 							if(roomNumber!=-1)
 								Man.sendToOthers(this, "[EXIT]"+userName);
@@ -81,20 +85,38 @@ public class OmokServer implements Runnable{
 							Man.sendToOthers(this, "[ENTER]"+userName);
 						}
 						else writer.println("[FULL]");        // 사용자에 방이 찼음을 알린다.
+					}*/
+					
+					else if(msg.startsWith("[ROOMNAME]")) {
+						String roomname = msg.substring(10);
+						if(!Man.isFull(roomname)) { 
+							if(roomName != "") {
+								Man.sendToOthers(this, "[EXIT]" + userName);
+								//Man.sendToOthers(this, "[EXIT]" + roomName);
+							}
+							roomName = roomname;
+							writer.println(msg);
+							writer.println(Man.getNamesInRoom(roomName));
+							
+							Man.sendToOthers(this, "[ROOMENTER]" + roomName);
+						}
+						else 
+							writer.println("[FULL]");
 					}
+					
 					// "[STONE]" 메시지는 상대편에게 전송한다.
-					else if(roomNumber>=1 && msg.startsWith("[STONE]"))
+					else if(roomName!="" && msg.startsWith("[STONE]"))
 						Man.sendToOthers(this, msg);
 					// 대화 메시지를 방에 전송한다.
 					else if(msg.startsWith("[MSG]"))
-						Man.sendToRoom(roomNumber, "["+userName+"]: "+msg.substring(5));
+						Man.sendToRoom(roomName, "["+userName+"]: "+msg.substring(5));
 					// "[START]" 메시지이면
 					else if(msg.startsWith("[START]")){
 						ready=true;   // 게임을 시작할 준비가 되었다.
 						// 다른 사용자도 게임을 시작한 준비가 되었으면
-						if(Man.isReady(roomNumber)){
+						if(Man.isReady(roomName)){
 							// 흑과 백을 정하고 사용자와 상대편에게 전송한다.
-							int a=rnd.nextInt(2);
+							int a=rnd.nextInt(2); 
 							if(a==0){
 								writer.println("[COLOR]BLACK");
 								Man.sendToOthers(this,"[COLOR]WHITE");
@@ -136,7 +158,7 @@ public class OmokServer implements Runnable{
 					Main.textArea.append(userName+"님이 접속을 끊었습니다.\n");
 					Main.textArea.append("현재 " + Man.size() + "명이 접속해 있습니다.\n");
 					// 사용자가 접속을 끊었음을 같은 방에 알린다.
-					Man.sendToRoom(roomNumber,"[DISCONNECT]"+userName);
+					Man.sendToRoom(roomName,"[DISCONNECT]"+userName);
 				}catch(Exception e){}
 			}
 		}
@@ -162,10 +184,13 @@ public class OmokServer implements Runnable{
 				pw.println(msg);
 			}catch(Exception e){}  
 		}
-		int getRoomNumber(int i){            // i번째 스레드의 방 번호를 반환한다.
+		/*int getRoomNumber(int i){            // i번째 스레드의 방 번호를 반환한다.
 			return getOT(i).getRoomNumber();
+		}*/
+		String getRoomName(int i) {
+			return getOT(i).getRoomName();
 		}
-		synchronized boolean isFull(int roomNum){    // 방이 찼는지 알아본다.
+		/*synchronized boolean isFull(int roomNum){    // 방이 찼는지 알아본다.
 			if(roomNum==0)
 				return false;                 // 대기실은 차지 않는다.
 			// 다른 방은 2명 이상 입장할 수 없다.
@@ -175,25 +200,49 @@ public class OmokServer implements Runnable{
 			if(count>=2)
 				return true;
 			return false;
+		}*/
+		
+		synchronized boolean isFull(String roomname) {
+			if(roomname == "")
+				return false;
+			int count = 0;
+			for(int i = 0; i < size(); i++) 
+				if(roomname.equals(getRoomName(i))) count++;
+			if(count >= 2)
+				return true;
+			return false;
 		}
 
 		// roomNum 방에 msg를 전송한다.
-		void sendToRoom(int roomNum, String msg){
+		/*void sendToRoom(int roomNum, String msg){
 			for(int i=0;i<size();i++)
 				if(roomNum==getRoomNumber(i))
 					sendTo(i, msg);
+		}*/
+		
+		void sendToRoom(String roomname, String msg) {
+			for(int i = 0; i < size(); i++) {
+				if(roomname.equals(getRoomName(i)))
+					sendTo(i, msg);
+			}
 		}
     
 		// ot와 같은 방에 있는 다른 사용자에게 msg를 전달한다.
-		void sendToOthers(controller ot, String msg){
+		/*void sendToOthers(controller ot, String msg){
 			for(int i=0;i<size();i++)
 				if(getRoomNumber(i)==ot.getRoomNumber() && getOT(i)!=ot)
+					sendTo(i, msg);
+		}*/
+		
+		void sendToOthers(controller ot, String msg){
+			for(int i=0;i<size();i++)
+				if(getRoomName(i).equals(ot.getRoomName()) && getOT(i)!=ot)
 					sendTo(i, msg);
 		}
     
 		// 게임을 시작할 준비가 되었는가를 반환한다.
 		// 두 명의 사용자 모두 준비된 상태이면 true를 반환한다.
-		synchronized boolean isReady(int roomNum){
+		/*synchronized boolean isReady(int roomNum){
 			int count=0;
 			for(int i=0;i<size();i++)
 				if(roomNum==getRoomNumber(i) && getOT(i).isReady())
@@ -201,14 +250,32 @@ public class OmokServer implements Runnable{
 			if(count==2)
 				return true;
 			return false;
+		}*/
+		
+		synchronized boolean isReady(String roomname){
+			int count=0;
+			for(int i=0;i<size();i++)
+				if(roomname.equals(getRoomName(i)) && getOT(i).isReady())
+					count++;
+			if(count==2)
+				return true;
+			return false;
 		}
 
 		// roomNum방에 있는 사용자들의 이름을 반환한다.
-		String getNamesInRoom(int roomNum){
+		/*String getNamesInRoom(int roomNum){
 			StringBuffer sb=new StringBuffer("[PLAYERS]");
 			for(int i=0;i<size();i++)
 				if(roomNum==getRoomNumber(i))
 					sb.append(getOT(i).getUserName()+"\t");
+			return sb.toString();
+		}*/
+		String getNamesInRoom(String roomname) {
+			StringBuffer sb = new StringBuffer("[PLAYERS]");
+			for(int i = 0; i < size(); i++) {
+				if(roomname.equals(getRoomName(i)))
+					sb.append(getOT(i).getUserName() + "\t");
+			}
 			return sb.toString();
 		}
 	}

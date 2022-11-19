@@ -51,7 +51,7 @@ public class Main extends JFrame implements Runnable{
 		textArea.setLineWrap(true);
 		
 		JScrollPane scrollPane = new JScrollPane(textArea);
-		scrollPane.setBounds(33, 129, 338, 161);
+		scrollPane.setBounds(27, 105, 200, 170);
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setVisible(false);
 		contentPane.add(scrollPane);
@@ -64,10 +64,10 @@ public class Main extends JFrame implements Runnable{
 		operate.addMouseListener(new MouseAdapter(){
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
-				operate.setIcon(new javax.swing.ImageIcon(getClass().getResource("operate-hover.png")));
+				operate.setIcon(new javax.swing.ImageIcon(getClass().getResource("hs_sang_oper-hover.jpg")));
 			}
 			public void mouseExited(MouseEvent arg0) {
-				operate.setIcon(new javax.swing.ImageIcon(getClass().getResource("operate.png")));
+				operate.setIcon(new javax.swing.ImageIcon(getClass().getResource("hs_sang_oper.jpg")));
 			}
 			public void mouseClicked(MouseEvent arg0){
 				// 서버가 동작한다.
@@ -76,25 +76,25 @@ public class Main extends JFrame implements Runnable{
 			    operateAction.setVisible(true);
 			}
 		});
-		operate.setIcon(new ImageIcon(Main.class.getResource("operate.png")));
-		operate.setBounds(113, 129, 184, 57);
+		operate.setIcon(new ImageIcon(Main.class.getResource("hs_sang_oper.jpg")));
+		operate.setBounds(24, 105, 169, 170);
 		contentPane.add(operate);
 		
 		// 동작 취소 버튼
 		operateAction.addMouseListener(new MouseAdapter(){
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
-				operateAction.setIcon(new javax.swing.ImageIcon(getClass().getResource("operate-stop-hover.png")));
+				operateAction.setIcon(new javax.swing.ImageIcon(getClass().getResource("hs_stop-hover.jpg")));
 			}
 			public void mouseExited(MouseEvent arg0) {
-				operateAction.setIcon(new javax.swing.ImageIcon(getClass().getResource("operate-stop.png")));
+				operateAction.setIcon(new javax.swing.ImageIcon(getClass().getResource("hs_stop.jpg")));
 			}
 			public void mouseClicked(MouseEvent arg0){
 				System.exit(0);
 			}
 		});
-		operateAction.setIcon(new ImageIcon(Main.class.getResource("operate-stop.png")));
-		operateAction.setBounds(110, 54, 184, 63);
+		operateAction.setIcon(new ImageIcon(Main.class.getResource("hs_stop.jpg")));
+		operateAction.setBounds(239, 212, 78, 60);
 		contentPane.add(operateAction);
 		
 		// 프로그램 종료 버튼
@@ -102,22 +102,22 @@ public class Main extends JFrame implements Runnable{
 		close.addMouseListener(new MouseAdapter(){
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
-				close.setIcon(new javax.swing.ImageIcon(getClass().getResource("close-hover.png")));
+				close.setIcon(new javax.swing.ImageIcon(getClass().getResource("hs_close-hover.jpg")));
 			}
 			public void mouseExited(MouseEvent arg0) {
-				close.setIcon(new javax.swing.ImageIcon(getClass().getResource("close.png")));
+				close.setIcon(new javax.swing.ImageIcon(getClass().getResource("hs_close.jpg")));
 			}
 			public void mouseClicked(MouseEvent arg0){
 				System.exit(0);
 			}
 		});
-		close.setIcon(new ImageIcon(Main.class.getResource("close.png")));
-		close.setBounds(365, 7, 28, 30);
+		close.setIcon(new ImageIcon(Main.class.getResource("hs_close.jpg")));
+		close.setBounds(357, 13, 28, 30);
 		contentPane.add(close);
 		
 		// 배경 화면 설정
 		JLabel background = new JLabel("");
-		background.setIcon(new ImageIcon(Main.class.getResource("background.png")));
+		background.setIcon(new ImageIcon(Main.class.getResource("hs_background.jpg")));
 		background.setBounds(0, 0, 400, 300);
 		contentPane.add(background);
 		
